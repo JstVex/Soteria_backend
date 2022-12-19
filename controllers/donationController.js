@@ -7,6 +7,76 @@ const getDonations = async (req, res) => {
     res.status(200).json(donations)
 }
 
+const getKachin = async (req, res) => {
+    const donations = await Donation.find({ location: 'kachin' });
+    res.status(200).json(donations)
+}
+
+const getKayin = async (req, res) => {
+    const donations = await Donation.find({ location: 'kayin' });
+    res.status(200).json(donations)
+}
+
+const getKayah = async (req, res) => {
+    const donations = await Donation.find({ location: 'kayah' });
+    res.status(200).json(donations)
+}
+
+const getChin = async (req, res) => {
+    const donations = await Donation.find({ location: 'chin' });
+    res.status(200).json(donations)
+}
+
+const getMon = async (req, res) => {
+    const donations = await Donation.find({ location: 'mon' });
+    res.status(200).json(donations)
+}
+
+const getRakhine = async (req, res) => {
+    const donations = await Donation.find({ location: 'rakhine' });
+    res.status(200).json(donations)
+}
+
+const getShan = async (req, res) => {
+    const donations = await Donation.find({ location: 'shan' });
+    res.status(200).json(donations)
+}
+
+const getYangon = async (req, res) => {
+    const donations = await Donation.find({ location: 'yangon' });
+    res.status(200).json(donations)
+}
+
+const getMandalay = async (req, res) => {
+    const donations = await Donation.find({ location: 'mandalay' });
+    res.status(200).json(donations)
+}
+
+const getAyeyarwady = async (req, res) => {
+    const donations = await Donation.find({ location: 'ayeyarwady' });
+    res.status(200).json(donations)
+}
+
+const getBago = async (req, res) => {
+    const donations = await Donation.find({ location: 'bago' });
+    res.status(200).json(donations)
+}
+
+const getMagway = async (req, res) => {
+    const donations = await Donation.find({ location: 'magway' });
+    res.status(200).json(donations)
+}
+
+const getSagaing = async (req, res) => {
+    const donations = await Donation.find({ location: 'sagaing' });
+    res.status(200).json(donations)
+}
+
+const getTanintharyi = async (req, res) => {
+    const donations = await Donation.find({ location: 'tanintharyi' });
+    res.status(200).json(donations)
+}
+
 // get a single donation
 const getDonation = async (req, res) => {
     const { id } = req.params;
@@ -89,11 +159,24 @@ const updateDonation = async (req, res) => {
     res.status(200).json(donation)
 }
 
-
 module.exports = {
     getDonations,
     getDonation,
     createDonation,
     deleteDonation,
-    updateDonation
+    updateDonation,
+    getKachin,
+    getKayin,
+    getKayah,
+    getChin,
+    getMon,
+    getRakhine,
+    getShan,
+    getYangon,
+    getMandalay,
+    getAyeyarwady,
+    getBago,
+    getMagway,
+    getSagaing,
+    getTanintharyi
 }
