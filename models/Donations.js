@@ -18,6 +18,13 @@ const donationSchema = new Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String
+    },
+    url: {
+        type: String,
+        required: true
+    },
     location: {
         type: String,
         enum: ['kachin', 'kayah', 'kayin', 'chin', 'mon', 'rakhine', 'shan', 'yangon', 'mandalay', 'ayeyarwady', 'bago', 'magway', 'sagaing', 'tanintharyi'],

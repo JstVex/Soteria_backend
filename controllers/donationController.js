@@ -96,7 +96,7 @@ const getDonation = async (req, res) => {
 
 // creat new donation
 const createDonation = async (req, res) => {
-    const { title, img, date, text, location } = req.body;
+    const { title, img, date, text, name, url, location } = req.body;
 
     let emptyFields = [];
 
@@ -109,6 +109,9 @@ const createDonation = async (req, res) => {
     if (!text) {
         emptyFields.push('text')
     }
+    if (!url) {
+        emptyFields.push('url')
+    }
     if (!location) {
         emptyFields.push('location')
     }
@@ -116,7 +119,7 @@ const createDonation = async (req, res) => {
         return res.status(400).json({ error: 'please fill in the fields', emptyFields })
     }
     try {
-        const donation = await Donation.create({ title, img, date, text, location })
+        const donation = await Donation.create({ title, img, date, text, name, url, location })
         res.status(200).json(donation)
     } catch (error) {
         res.status(400).json({ error: error.message })
