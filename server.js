@@ -8,6 +8,9 @@ const cors = require('cors');
 const webRoutes = require('./routes/webs')
 const donationRoutes = require('./routes/donations')
 
+const webscrappingActivity = require('./components/webscrapes/weclick4pdf');
+const channelscrapping = require('./components/channelscrapes/weclick');
+
 const app = express();
 
 app.use(
@@ -18,6 +21,13 @@ app.use(
     })
 )
 
+// const pageUrl = "https://weclick4pdf.com/"
+const pageUrlActivity = "https://weclick4pdf.com/category/lifestyle/activity/";
+const channelUrl = "https://www.youtube.com/@WECLICK2/videos";
+
+// webscrapping(pageUrl);
+// webscrappingActivity(pageUrlActivity);
+channelscrapping(channelUrl)
 // middlewares
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
