@@ -30,6 +30,11 @@ const channelscrapeArraySchema = new Schema({
     dates: {
         type: [String],
         required: true
+    },
+    channel: {
+        type: String,
+        required: true,
+        enum: ['weclick', 'weclick4mm', 'raungni']
     }
 })
 

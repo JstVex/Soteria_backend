@@ -70,7 +70,8 @@ const channelscrapping = async pageUrl => {
             viewsAmount: newsViews.length,
             views: newsViews,
             datesAmount: newsDates.length,
-            dates: newsDates
+            dates: newsDates,
+            channel: "weclick"
         };
 
     } catch (e) {

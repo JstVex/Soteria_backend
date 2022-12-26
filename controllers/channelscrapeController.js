@@ -12,7 +12,7 @@ const saveWeClick = (dataObj) => {
                 return newVids.save().catch(err => console.log(err));
             }
 
-            const { titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates } = dataObj;
+            const { titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates, channel } = dataObj;
 
             const dbId = list[0]._id;
             const dbTitlesAmount = list[0].titlesAmount;
@@ -23,6 +23,7 @@ const saveWeClick = (dataObj) => {
             const dbViews = list[0].views;
             const dbDatesAmount = list[0].datesAmount;
             const dbDates = list[0].dates;
+            const dbChannel = list[0].channel;
 
             let catchDifference = false;
 
@@ -58,6 +59,10 @@ const saveWeClick = (dataObj) => {
                 });
             }
 
+            if (dbChannel !== channel) {
+                catchDifference = true;
+            }
+
             if (catchDifference) {
                 console.log('New data reported. Updating database...');
                 return ChannelscrapeArray.findOneAndUpdate({ _id: dbId }, dataObj);
@@ -75,6 +80,11 @@ const saveWeClick = (dataObj) => {
 // get all channelscrapes
 const getChannelscrapes = async (req, res) => {
     const channelscrapes = await ChannelscrapeArray.find({});
+    res.status(200).json(channelscrapes)
+}
+
+const getAllWeclick = async (req, res) => {
+    const channelscrapes = await ChannelscrapeArray.find({ channel: "weclick" })
     res.status(200).json(channelscrapes)
 }
 
@@ -167,5 +177,6 @@ module.exports = {
     getChannelscrape,
     createChannelscrape,
     deleteChannelscrape,
-    updateChannelscrape
+    updateChannelscrape,
+    getAllWeclick
 };
