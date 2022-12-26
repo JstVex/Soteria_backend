@@ -11,36 +11,66 @@ const channelscrapping = async pageUrl => {
         await page.goto(pageUrl);
 
         const newsTitle = await page.evaluate(() => {
-            const newsTitles = document.querySelectorAll(
+            const titles = document.querySelectorAll(
                 "#video-title"
             );
-            let newsTitlesList = [];
+            let titlesList = [];
 
-            newsTitles.forEach(title => {
+            titles.forEach(title => {
                 const currentTitle = title.innerText;
-                newsTitlesList.push(currentTitle);
+                titlesList.push(currentTitle);
             })
-            return newsTitlesList;
+            return titlesList;
         });
 
-        const newsImage = await page.evaluate(() => {
-            const newsImgs = document.querySelectorAll(
+        const newsImages = await page.evaluate(() => {
+            const images = document.querySelectorAll(
                 "#thumbnail > yt-image > img"
             );
-            let newsImagesLists = [];
+            let imagesList = [];
 
-            newsImgs.forEach(img => {
+            images.forEach(img => {
                 const currentImg = img.src;
-                newsImagesLists.push(currentImg);
+                imagesList.push(currentImg);
             })
-            return newsImagesLists;
+            return imagesList;
+        });
+
+        const newsViews = await page.evaluate(() => {
+            const views = document.querySelectorAll(
+                "#metadata-line > span:nth-child(3)"
+            );
+            let viewsList = [];
+
+            views.forEach(view => {
+                const currentView = view.innerText;
+                viewsList.push(currentView);
+            })
+            return viewsList;
+        });
+
+        const newsDates = await page.evaluate(() => {
+            const dates = document.querySelectorAll(
+                "#metadata-line > span:nth-child(4)"
+            );
+            let datesList = [];
+
+            dates.forEach(date => {
+                const currentDate = date.innerText;
+                datesList.push(currentDate);
+            })
+            return datesList;
         });
 
         dataObj = {
-            titleamount: newsTitle.length,
-            title: newsTitle,
-            imgamount: newsImage.length,
-            img: newsImage
+            titlesAmount: newsTitle.length,
+            titles: newsTitle,
+            imgsAmount: newsImages.length,
+            imgs: newsImages,
+            viewsAmount: newsViews.length,
+            views: newsViews,
+            datesAmount: newsDates.length,
+            dates: newsDates
         };
 
     } catch (e) {
