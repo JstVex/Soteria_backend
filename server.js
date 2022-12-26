@@ -7,9 +7,13 @@ const cors = require('cors');
 
 const webRoutes = require('./routes/webs')
 const donationRoutes = require('./routes/donations')
+const channelscrapeRoutes = require('./routes/channelscrapes')
 
-const webscrappingActivity = require('./components/webscrapes/weclick4pdf');
-const channelscrapping = require('./components/channelscrapes/weclick');
+const weclick = require("./components/channelscrapes/weclick");
+const { saveWeClick } = require("./controllers/channelscrapeController");
+
+// const webscrappingActivity = require('./components/webscrapes/weclick4pdf');
+// const channelscrapping = require('./components/channelscrapes/weclick');
 
 const app = express();
 
@@ -22,12 +26,21 @@ app.use(
 )
 
 // const pageUrl = "https://weclick4pdf.com/"
-const pageUrlActivity = "https://weclick4pdf.com/category/lifestyle/activity/";
+// const pageUrlActivity = "https://weclick4pdf.com/category/lifestyle/activity/";
 const channelUrl = "https://www.youtube.com/@WECLICK2/videos";
 
 // webscrapping(pageUrl);
 // webscrappingActivity(pageUrlActivity);
-channelscrapping(channelUrl)
+// channelscrapping(channelUrl)
+
+weclick(channelUrl)
+    .then(dataObj => {
+        saveWeClick(dataObj);
+    })
+    .catch(console.error)
+
+
+
 // middlewares
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -39,6 +52,8 @@ app.use('/', require('./routes/root'))
 app.use('/websites', webRoutes)
 
 app.use('/donations', donationRoutes)
+
+app.use('/channels', channelscrapeRoutes)
 
 
 app.all('*', (req, res) => {
