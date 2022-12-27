@@ -5,7 +5,8 @@ const {
     createChannelscrape,
     deleteChannelscrape,
     updateChannelscrape,
-    getAllWeclick
+    getAllWeclick,
+    getAllWeclick4mm
 } = require('../controllers/channelscrapeController');
 
 
@@ -14,7 +15,9 @@ const router = express();
 // get webs
 router.get('/', getChannelscrapes);
 
-router.get('/weclick', getAllWeclick)
+router.get('/weclick', getAllWeclick);
+
+router.get('/weclick4mm', getAllWeclick4mm)
 
 //get a single web
 router.get('/:id', getChannelscrape);

@@ -10,7 +10,8 @@ const donationRoutes = require('./routes/donations')
 const channelscrapeRoutes = require('./routes/channelscrapes')
 
 const weclick = require("./components/channelscrapes/weclick");
-const { saveWeClick } = require("./controllers/channelscrapeController");
+const weclick4mm = require("./components/channelscrapes/weclick4mm")
+const { saveWeClick, saveWeclick4mm } = require("./controllers/channelscrapeController");
 
 // const webscrappingActivity = require('./components/webscrapes/weclick4pdf');
 // const channelscrapping = require('./components/channelscrapes/weclick');
@@ -27,15 +28,21 @@ app.use(
 
 // const pageUrl = "https://weclick4pdf.com/"
 // const pageUrlActivity = "https://weclick4pdf.com/category/lifestyle/activity/";
-const channelUrl = "https://www.youtube.com/@WECLICK2/videos";
+const weclickUrl = "https://www.youtube.com/@WECLICK2/videos";
+const weclick4mmUrl = "https://www.youtube.com/@WECLICK4MM/videos";
 
 // webscrapping(pageUrl);
 // webscrappingActivity(pageUrlActivity);
-// channelscrapping(channelUrl)
 
-weclick(channelUrl)
+weclick(weclickUrl)
     .then(dataObj => {
         saveWeClick(dataObj);
+    })
+    .catch(console.error)
+
+weclick4mm(weclick4mmUrl)
+    .then(dataObj => {
+        saveWeclick4mm(dataObj);
     })
     .catch(console.error)
 
