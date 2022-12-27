@@ -37,6 +37,12 @@ const channelscrapeArraySchema = new Schema({
     urls: {
         type: [String]
     },
+    pfp: {
+        type: String
+    },
+    subs: {
+        type: String
+    },
     channel: {
         type: String,
         required: true,

@@ -10,7 +10,7 @@ const channelscrapping = async pageUrl => {
     try {
         await page.goto(pageUrl);
 
-        const newsTitle = await page.evaluate(() => {
+        const newTitle = await page.evaluate(() => {
             const titles = document.querySelectorAll(
                 "#video-title"
             );
@@ -23,7 +23,7 @@ const channelscrapping = async pageUrl => {
             return titlesList;
         });
 
-        const newsImages = await page.evaluate(() => {
+        const newImages = await page.evaluate(() => {
             const images = document.querySelectorAll(
                 "#thumbnail > yt-image > img"
             );
@@ -36,7 +36,7 @@ const channelscrapping = async pageUrl => {
             return imagesList;
         });
 
-        const newsViews = await page.evaluate(() => {
+        const newViews = await page.evaluate(() => {
             const views = document.querySelectorAll(
                 "#metadata-line > span:nth-child(3)"
             );
@@ -49,7 +49,7 @@ const channelscrapping = async pageUrl => {
             return viewsList;
         });
 
-        const newsDates = await page.evaluate(() => {
+        const newDates = await page.evaluate(() => {
             const dates = document.querySelectorAll(
                 "#metadata-line > span:nth-child(4)"
             );
@@ -62,7 +62,7 @@ const channelscrapping = async pageUrl => {
             return datesList;
         });
 
-        const newsUrls = await page.evaluate(() => {
+        const newUrls = await page.evaluate(() => {
             const dates = document.querySelectorAll(
                 "#thumbnail"
             );
@@ -75,18 +75,33 @@ const channelscrapping = async pageUrl => {
             return urlsList.slice(1);
         });
 
+        const newPfp = await page.evaluate(() => {
+            const pfp = document.querySelector(
+                "#img"
+            ).src;
+            return pfp;
+        });
+
+        const newSubs = await page.evaluate(() => {
+            const subs = document.querySelector(
+                "#subscriber-count"
+            ).innerText;
+            return subs;
+        });
 
         dataObj = {
-            titlesAmount: newsTitle.length,
-            titles: newsTitle,
-            imgsAmount: newsImages.length,
-            imgs: newsImages,
-            viewsAmount: newsViews.length,
-            views: newsViews,
-            datesAmount: newsDates.length,
-            dates: newsDates,
-            urlsAmount: newsUrls.length,
-            urls: newsUrls,
+            titlesAmount: newTitle.length,
+            titles: newTitle,
+            imgsAmount: newImages.length,
+            imgs: newImages,
+            viewsAmount: newViews.length,
+            views: newViews,
+            datesAmount: newDates.length,
+            dates: newDates,
+            urlsAmount: newUrls.length,
+            urls: newUrls,
+            pfp: newPfp,
+            subs: newSubs,
             channel: "weclick4mm"
         };
 
