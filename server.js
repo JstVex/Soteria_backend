@@ -10,8 +10,9 @@ const donationRoutes = require('./routes/donations')
 const channelscrapeRoutes = require('./routes/channelscrapes')
 
 const weclick = require("./components/channelscrapes/weclick");
-const weclick4mm = require("./components/channelscrapes/weclick4mm")
-const { saveWeClick, saveWeclick4mm } = require("./controllers/channelscrapeController");
+const weclick4mm = require("./components/channelscrapes/weclick4mm");
+const raungni = require("./components/channelscrapes/raungni");
+const { saveWeClick, saveWeclick4mm, saveRaungni } = require("./controllers/channelscrapeController");
 
 // const webscrappingActivity = require('./components/webscrapes/weclick4pdf');
 // const channelscrapping = require('./components/channelscrapes/weclick');
@@ -30,6 +31,7 @@ app.use(
 // const pageUrlActivity = "https://weclick4pdf.com/category/lifestyle/activity/";
 const weclickUrl = "https://www.youtube.com/@WECLICK2/videos";
 const weclick4mmUrl = "https://www.youtube.com/@WECLICK4MM/videos";
+const raungniUrl = "https://www.youtube.com/@RaungNi4MM/videos";
 
 // webscrapping(pageUrl);
 // webscrappingActivity(pageUrlActivity);
@@ -43,6 +45,12 @@ weclick(weclickUrl)
 weclick4mm(weclick4mmUrl)
     .then(dataObj => {
         saveWeclick4mm(dataObj);
+    })
+    .catch(console.error)
+
+raungni(raungniUrl)
+    .then(dataObj => {
+        saveRaungni(dataObj);
     })
     .catch(console.error)
 
