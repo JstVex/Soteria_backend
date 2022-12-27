@@ -62,6 +62,19 @@ const channelscrapping = async pageUrl => {
             return datesList;
         });
 
+        const newsUrls = await page.evaluate(() => {
+            const dates = document.querySelectorAll(
+                "#thumbnail"
+            );
+            let urlsList = [];
+
+            dates.forEach(url => {
+                const currentUrl = url.href;
+                urlsList.push(currentUrl);
+            })
+            return urlsList.slice(1);
+        });
+
         dataObj = {
             titlesAmount: newsTitle.length,
             titles: newsTitle,
@@ -71,6 +84,8 @@ const channelscrapping = async pageUrl => {
             views: newsViews,
             datesAmount: newsDates.length,
             dates: newsDates,
+            urlsAmount: newsUrls.length,
+            urls: newsUrls,
             channel: "raungni"
         };
 

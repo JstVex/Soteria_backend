@@ -31,11 +31,18 @@ const channelscrapeArraySchema = new Schema({
         type: [String],
         required: true
     },
+    urlsAmount: {
+        type: Number
+    },
+    urls: {
+        type: [String]
+    },
     channel: {
         type: String,
         required: true,
         enum: ['weclick', 'weclick4mm', 'raungni']
     }
+
 })
 
 module.exports = mongoose.model('ChannelscrapeArray', channelscrapeArraySchema);

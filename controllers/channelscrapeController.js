@@ -12,7 +12,7 @@ const saveWeClick = (dataObj) => {
                 return newVids.save().catch(err => console.log(err));
             }
 
-            const { titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates, channel } = dataObj;
+            const { titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates, urlsAmount, urls, channel } = dataObj;
 
             const dbId = list[0]._id;
             const dbTitlesAmount = list[0].titlesAmount;
@@ -23,6 +23,8 @@ const saveWeClick = (dataObj) => {
             const dbViews = list[0].views;
             const dbDatesAmount = list[0].datesAmount;
             const dbDates = list[0].dates;
+            const dbUrlsAmount = list[0].urlssAmount;
+            const dbUrls = list[0].urls;
             const dbChannel = list[0].channel;
 
             let catchDifference = false;
@@ -56,6 +58,14 @@ const saveWeClick = (dataObj) => {
             } else {
                 dbDates.forEach((date, i) => {
                     if (date !== dates[i]) catchDifference = true;
+                });
+            }
+
+            if (dbUrlsAmount !== urlsAmount) {
+                catchDifference = true;
+            } else {
+                dbUrls.forEach((url, i) => {
+                    if (url !== urls[i]) catchDifference = true;
                 });
             }
 
@@ -88,7 +98,7 @@ const saveWeclick4mm = (dataObj) => {
                 return newVids.save().catch(err => console.log(err));
             }
 
-            const { titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates, channel } = dataObj;
+            const { titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates, urlsAmount, urls, channel } = dataObj;
 
             const dbId = list[0]._id;
             const dbTitlesAmount = list[0].titlesAmount;
@@ -99,6 +109,8 @@ const saveWeclick4mm = (dataObj) => {
             const dbViews = list[0].views;
             const dbDatesAmount = list[0].datesAmount;
             const dbDates = list[0].dates;
+            const dbUrlsAmount = list[0].urlssAmount;
+            const dbUrls = list[0].urls;
             const dbChannel = list[0].channel;
 
             let catchDifference = false;
@@ -132,6 +144,14 @@ const saveWeclick4mm = (dataObj) => {
             } else {
                 dbDates.forEach((date, i) => {
                     if (date !== dates[i]) catchDifference = true;
+                });
+            }
+
+            if (dbUrlsAmount !== urlsAmount) {
+                catchDifference = true;
+            } else {
+                dbUrls.forEach((url, i) => {
+                    if (url !== urls[i]) catchDifference = true;
                 });
             }
 
@@ -164,7 +184,7 @@ const saveRaungni = (dataObj) => {
                 return newVids.save().catch(err => console.log(err));
             }
 
-            const { titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates, channel } = dataObj;
+            const { titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates, urlsAmount, urls, channel } = dataObj;
 
             const dbId = list[0]._id;
             const dbTitlesAmount = list[0].titlesAmount;
@@ -175,6 +195,8 @@ const saveRaungni = (dataObj) => {
             const dbViews = list[0].views;
             const dbDatesAmount = list[0].datesAmount;
             const dbDates = list[0].dates;
+            const dbUrlsAmount = list[0].urlssAmount;
+            const dbUrls = list[0].urls;
             const dbChannel = list[0].channel;
 
             let catchDifference = false;
@@ -208,6 +230,14 @@ const saveRaungni = (dataObj) => {
             } else {
                 dbDates.forEach((date, i) => {
                     if (date !== dates[i]) catchDifference = true;
+                });
+            }
+
+            if (dbUrlsAmount !== urlsAmount) {
+                catchDifference = true;
+            } else {
+                dbUrls.forEach((url, i) => {
+                    if (url !== urls[i]) catchDifference = true;
                 });
             }
 
