@@ -36,7 +36,7 @@ const webscrapping = async pageUrl => {
     return dataObj;
 };
 
-const webscrappingActivity = async pageUrlActivity => {
+const webscrappingWeclick4pdfTopics = async (pageUrlActivity, topic) => {
     const browser = await puppeteer.launch({
         headless: true
     });
@@ -123,7 +123,7 @@ const webscrappingActivity = async pageUrlActivity => {
             urlsAmount: newUrls.length,
             urls: newUrls,
             website: "weclick4pdf",
-            topic: "activity"
+            topic: topic
         };
 
     } catch (e) {
@@ -135,4 +135,6 @@ const webscrappingActivity = async pageUrlActivity => {
     return dataObj;
 };
 
-module.exports = webscrappingActivity;
+module.exports = {
+    webscrappingWeclick4pdfTopics
+};

@@ -11,8 +11,8 @@ const donationRoutes = require('./routes/donations');
 const webscrapeRoutes = require('./routes/webscrapes')
 const channelscrapeRoutes = require('./routes/channelscrapes')
 
-const weclick4pdf = require("./components/webscrapes/weclick4pdf");
-const { saveWeclick4pdfActivity } = require("./controllers/webscrapesController")
+const { webscrappingWeclick4pdfTopics } = require("./components/webscrapes/weclick4pdf");
+const { saveWeclick4pdfTopics } = require("./controllers/webscrapesController")
 
 const weclick = require("./components/channelscrapes/weclick");
 const weclick4mm = require("./components/channelscrapes/weclick4mm");
@@ -34,6 +34,7 @@ app.use(
 
 // const pageUrl = "https://weclick4pdf.com/"
 const weclick4pdfActivityUrl = "https://weclick4pdf.com/category/lifestyle/activity/";
+const weclick4pdfBeautyUrl = "https://weclick4pdf.com/category/beauty/";
 
 const weclickUrl = "https://www.youtube.com/@WECLICK2/videos";
 const weclick4mmUrl = "https://www.youtube.com/@WECLICK4MM/videos";
@@ -41,13 +42,22 @@ const raungniUrl = "https://www.youtube.com/@RaungNi4MM/videos";
 
 // webscrapping(pageUrl);
 
-weclick4pdf(weclick4pdfActivityUrl)
+
+// call websites scraping functions
+webscrappingWeclick4pdfTopics(weclick4pdfActivityUrl, 'activity')
     .then(dataObj => {
-        saveWeclick4pdfActivity(dataObj);
+        saveWeclick4pdfTopics(dataObj, 'activity');
+    })
+    .catch(console.error)
+
+webscrappingWeclick4pdfTopics(weclick4pdfBeautyUrl, 'beauty')
+    .then(dataObj => {
+        saveWeclick4pdfTopics(dataObj, 'beauty');
     })
     .catch(console.error)
 
 
+// call channels scrapping functions
 weclick(weclickUrl)
     .then(dataObj => {
         saveWeClick(dataObj);

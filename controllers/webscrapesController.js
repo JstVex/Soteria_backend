@@ -1,9 +1,9 @@
 const WebscrapeArray = require('../models/WebscrapesArray');
 const mongoose = require('mongoose');
 
-const saveWeclick4pdfActivity = (dataObj) => {
+const saveWeclick4pdfTopics = (dataObj, topic) => {
     try {
-        WebscrapeArray.find({ website: 'weclick4pdf', topic: 'activity' }, function (err, list) {
+        WebscrapeArray.find({ website: 'weclick4pdf', topic: topic }, function (err, list) {
             return list;
         }).clone().then(list => {
             if (list == "") {
@@ -92,6 +92,8 @@ const saveWeclick4pdfActivity = (dataObj) => {
     }
 };
 
+
+
 // get all webscrapes
 const getWebscrapes = async (req, res) => {
     const webscrapes = await WebscrapeArray.find({});
@@ -105,6 +107,11 @@ const getAllWeclick4pdf = async (req, res) => {
 
 const getAllWeclick4pdfActivity = async (req, res) => {
     const webscrapes = await WebscrapeArray.find({ channel: "weclick", topic: "activity" })
+    res.status(200).json(webscrapes)
+}
+
+const getAllWeclick4pdfBeauty = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ channel: "weclick", topic: "beauty" })
     res.status(200).json(webscrapes)
 }
 
@@ -191,12 +198,13 @@ const updateWebscrape = async (req, res) => {
 }
 
 module.exports = {
-    saveWeclick4pdfActivity,
+    saveWeclick4pdfTopics,
     getWebscrapes,
     getWebscrape,
     createWebscrape,
     deleteWebscrape,
     updateWebscrape,
     getAllWeclick4pdf,
-    getAllWeclick4pdfActivity
+    getAllWeclick4pdfActivity,
+    getAllWeclick4pdfBeauty
 };

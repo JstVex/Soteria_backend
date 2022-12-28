@@ -6,7 +6,8 @@ const {
     deleteWebscrape,
     updateWebscrape,
     getAllWeclick4pdf,
-    getAllWeclick4pdfActivity
+    getAllWeclick4pdfActivity,
+    getAllWeclick4pdfBeauty
 } = require('../controllers/webscrapesController');
 
 const router = express();
@@ -17,6 +18,8 @@ router.get('/', getWebscrapes);
 router.get('/weclick4pdf', getAllWeclick4pdf);
 
 router.get('/weclick4pdf/activity', getAllWeclick4pdfActivity);
+
+router.get('/weclick4pdf/beauty', getAllWeclick4pdfBeauty);
 
 //get a single web
 router.get('/:id', getWebscrape);
