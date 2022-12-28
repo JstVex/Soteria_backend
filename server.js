@@ -5,9 +5,14 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
 
-const webRoutes = require('./routes/webs')
-const donationRoutes = require('./routes/donations')
+// const webRoutes = require('./routes/webs');
+const donationRoutes = require('./routes/donations');
+
+const webscrapeRoutes = require('./routes/webscrapes')
 const channelscrapeRoutes = require('./routes/channelscrapes')
+
+const weclick4pdf = require("./components/webscrapes/weclick4pdf");
+const { saveWeclick4pdfActivity } = require("./controllers/webscrapesController")
 
 const weclick = require("./components/channelscrapes/weclick");
 const weclick4mm = require("./components/channelscrapes/weclick4mm");
@@ -28,13 +33,20 @@ app.use(
 )
 
 // const pageUrl = "https://weclick4pdf.com/"
-// const pageUrlActivity = "https://weclick4pdf.com/category/lifestyle/activity/";
+const weclick4pdfActivityUrl = "https://weclick4pdf.com/category/lifestyle/activity/";
+
 const weclickUrl = "https://www.youtube.com/@WECLICK2/videos";
 const weclick4mmUrl = "https://www.youtube.com/@WECLICK4MM/videos";
 const raungniUrl = "https://www.youtube.com/@RaungNi4MM/videos";
 
 // webscrapping(pageUrl);
-// webscrappingActivity(pageUrlActivity);
+
+weclick4pdf(weclick4pdfActivityUrl)
+    .then(dataObj => {
+        saveWeclick4pdfActivity(dataObj);
+    })
+    .catch(console.error)
+
 
 weclick(weclickUrl)
     .then(dataObj => {
@@ -64,11 +76,11 @@ app.use(express.urlencoded());
 //routes 
 app.use('/', require('./routes/root'))
 
-app.use('/websites', webRoutes)
-
 app.use('/donations', donationRoutes)
 
 app.use('/channels', channelscrapeRoutes)
+
+app.use('/websites', webscrapeRoutes)
 
 
 app.all('*', (req, res) => {
