@@ -35,6 +35,9 @@ app.use(
 // const pageUrl = "https://weclick4pdf.com/"
 const weclick4pdfActivityUrl = "https://weclick4pdf.com/category/lifestyle/activity/";
 const weclick4pdfBeautyUrl = "https://weclick4pdf.com/category/beauty/";
+const weclick4pdfTravelUrl = "https://weclick4pdf.com/category/travel-tips/";
+const weclick4pdfWorldUrl = "https://weclick4pdf.com/category/world/";
+const weclick4pdfGeneralUrl = "https://weclick4pdf.com/category/example-1/"
 
 const weclickUrl = "https://www.youtube.com/@WECLICK2/videos";
 const weclick4mmUrl = "https://www.youtube.com/@WECLICK4MM/videos";
@@ -55,6 +58,26 @@ webscrappingWeclick4pdfTopics(weclick4pdfBeautyUrl, 'beauty')
         saveWeclick4pdfTopics(dataObj, 'beauty');
     })
     .catch(console.error)
+
+webscrappingWeclick4pdfTopics(weclick4pdfTravelUrl, 'travel')
+    .then(dataObj => {
+        saveWeclick4pdfTopics(dataObj, 'travel');
+    })
+    .catch(console.error)
+
+webscrappingWeclick4pdfTopics(weclick4pdfWorldUrl, 'world')
+    .then(dataObj => {
+        saveWeclick4pdfTopics(dataObj, 'world');
+    })
+    .catch(console.error)
+
+webscrappingWeclick4pdfTopics(weclick4pdfGeneralUrl, 'general')
+    .then(dataObj => {
+        saveWeclick4pdfTopics(dataObj, 'general');
+    })
+    .catch(console.error)
+
+
 
 
 // call channels scrapping functions
