@@ -42,6 +42,9 @@ const webscrapeArraySchema = new Schema({
         required: true,
         enum: ['weclick4pdf', 'pyithubawa']
     },
+    firstPost: {
+        type: Boolean
+    },
     topic: {
         type: String
     }

@@ -11,8 +11,8 @@ const donationRoutes = require('./routes/donations');
 const webscrapeRoutes = require('./routes/webscrapes')
 const channelscrapeRoutes = require('./routes/channelscrapes')
 
-const { webscrappingWeclick4pdfTopics } = require("./components/webscrapes/weclick4pdf");
-const { saveWeclick4pdfTopics } = require("./controllers/webscrapesController")
+const { webscrappingWeclick4pdfFirstPost, webscrappingWeclick4pdfTopics } = require("./components/webscrapes/weclick4pdf");
+const { saveWeclick4pdfFirstPost, saveWeclick4pdfTopics } = require("./controllers/webscrapesController")
 
 const weclick = require("./components/channelscrapes/weclick");
 const weclick4mm = require("./components/channelscrapes/weclick4mm");
@@ -32,21 +32,27 @@ app.use(
     })
 )
 
-// const pageUrl = "https://weclick4pdf.com/"
+
+const weclick4pdfUrl = "https://weclick4pdf.com/";
 const weclick4pdfActivityUrl = "https://weclick4pdf.com/category/lifestyle/activity/";
 const weclick4pdfBeautyUrl = "https://weclick4pdf.com/category/beauty/";
 const weclick4pdfTravelUrl = "https://weclick4pdf.com/category/travel-tips/";
 const weclick4pdfWorldUrl = "https://weclick4pdf.com/category/world/";
 const weclick4pdfGeneralUrl = "https://weclick4pdf.com/category/example-1/"
+const weclick4pdfFitnessUrl = "https://weclick4pdf.com/category/sports/"
 
 const weclickUrl = "https://www.youtube.com/@WECLICK2/videos";
 const weclick4mmUrl = "https://www.youtube.com/@WECLICK4MM/videos";
 const raungniUrl = "https://www.youtube.com/@RaungNi4MM/videos";
 
-// webscrapping(pageUrl);
-
 
 // call websites scraping functions
+webscrappingWeclick4pdfFirstPost(weclick4pdfUrl)
+    .then(dataObj => {
+        saveWeclick4pdfFirstPost(dataObj);
+    })
+    .catch(console.error)
+
 webscrappingWeclick4pdfTopics(weclick4pdfActivityUrl, 'activity')
     .then(dataObj => {
         saveWeclick4pdfTopics(dataObj, 'activity');
@@ -77,7 +83,11 @@ webscrappingWeclick4pdfTopics(weclick4pdfGeneralUrl, 'general')
     })
     .catch(console.error)
 
-
+webscrappingWeclick4pdfTopics(weclick4pdfFitnessUrl, 'fitness')
+    .then(dataObj => {
+        saveWeclick4pdfTopics(dataObj, 'fitness');
+    })
+    .catch(console.error)
 
 
 // call channels scrapping functions
