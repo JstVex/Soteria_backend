@@ -55,7 +55,7 @@ const raungniUrl = "https://www.youtube.com/@RaungNi4MM/videos";
 // call websites scraping functions for weclick4pdf website
 webscrappingFirstPost(weclick4pdfUrl, 'weclick4pdf')
     .then(dataObj => {
-        saveFirstPost(dataObj);
+        saveFirstPost(dataObj, 'weclick4pdf');
     })
     .catch(console.error)
 
@@ -99,7 +99,7 @@ webscrappingTopics(weclick4pdfFitnessUrl, 'weclick4pdf', 'fitness')
 // call websites scraping functions for pyithubawa website
 webscrappingFirstPost(pyithubawaUrl, 'pyithubawa')
     .then(dataObj => {
-        saveFirstPost(dataObj);
+        saveFirstPost(dataObj, 'pyithubawa');
     })
     .catch(console.error)
 

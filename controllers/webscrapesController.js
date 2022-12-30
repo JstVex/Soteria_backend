@@ -1,9 +1,9 @@
 const WebscrapeArray = require('../models/WebscrapesArray');
 const mongoose = require('mongoose');
 
-const saveFirstPost = (dataObj) => {
+const saveFirstPost = (dataObj, website) => {
     try {
-        WebscrapeArray.find({ firstPost: true }, function (err, list) {
+        WebscrapeArray.find({ firstPost: true, website: website }, function (err, list) {
             return list;
         }).clone().then(list => {
             if (list == "") {
