@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 
-const webscrappingWeclick4pdfFirstPost = async pageUrl => {
+const webscrappingFirstPost = async (pageUrl, website) => {
     const browser = await puppeteer.launch({
         headless: true
     });
@@ -122,7 +122,7 @@ const webscrappingWeclick4pdfFirstPost = async pageUrl => {
             texts: newTexts,
             dates: newDates,
             urls: newUrls,
-            website: 'weclick4pdf',
+            website: website,
             firstPost: true,
             topic: ""
         };
@@ -136,7 +136,7 @@ const webscrappingWeclick4pdfFirstPost = async pageUrl => {
     return dataObj;
 };
 
-const webscrappingWeclick4pdfTopics = async (pageUrlActivity, topic) => {
+const webscrappingTopics = async (pageUrl, website, topic) => {
     const browser = await puppeteer.launch({
         headless: true
     });
@@ -144,7 +144,7 @@ const webscrappingWeclick4pdfTopics = async (pageUrlActivity, topic) => {
     let dataObj = {};
 
     try {
-        await page.goto(pageUrlActivity);
+        await page.goto(pageUrl);
 
         const newTitles = await page.evaluate(() => {
             const tiles = document.querySelectorAll(
@@ -222,7 +222,7 @@ const webscrappingWeclick4pdfTopics = async (pageUrlActivity, topic) => {
             dates: newDates,
             urlsAmount: newUrls.length,
             urls: newUrls,
-            website: "weclick4pdf",
+            website: website,
             firstPost: false,
             topic: topic
         };
@@ -237,6 +237,6 @@ const webscrappingWeclick4pdfTopics = async (pageUrlActivity, topic) => {
 };
 
 module.exports = {
-    webscrappingWeclick4pdfFirstPost,
-    webscrappingWeclick4pdfTopics
+    webscrappingFirstPost,
+    webscrappingTopics
 };

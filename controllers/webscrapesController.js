@@ -1,7 +1,7 @@
 const WebscrapeArray = require('../models/WebscrapesArray');
 const mongoose = require('mongoose');
 
-const saveWeclick4pdfFirstPost = (dataObj) => {
+const saveFirstPost = (dataObj) => {
     try {
         WebscrapeArray.find({ firstPost: true }, function (err, list) {
             return list;
@@ -62,9 +62,9 @@ const saveWeclick4pdfFirstPost = (dataObj) => {
 };
 
 
-const saveWeclick4pdfTopics = (dataObj, topic) => {
+const saveTopics = (dataObj, website, topic) => {
     try {
-        WebscrapeArray.find({ website: 'weclick4pdf', topic: topic }, function (err, list) {
+        WebscrapeArray.find({ website: website, topic: topic }, function (err, list) {
             return list;
         }).clone().then(list => {
             if (list == "") {
@@ -168,6 +168,7 @@ const getAllFirstPosts = async (req, res) => {
     res.status(200).json(webscrapes)
 }
 
+// for weclick4pdf
 const getAllWeclick4pdf = async (req, res) => {
     const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", firstPost: false })
     res.status(200).json(webscrapes)
@@ -200,6 +201,37 @@ const getAllWeclick4pdfGeneral = async (req, res) => {
 
 const getAllWeclick4pdfFitness = async (req, res) => {
     const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "fitness" })
+    res.status(200).json(webscrapes)
+}
+
+// for pyithubawa
+const getAllPyithubawa = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "pyithubawa", firstPost: false })
+    res.status(200).json(webscrapes)
+}
+
+const getAllPyithubawaActivity = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "pyithubawa", topic: "activity" })
+    res.status(200).json(webscrapes)
+}
+
+const getAllPyithubawaBeauty = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "pyithubawa", topic: "beauty" })
+    res.status(200).json(webscrapes)
+}
+
+const getAllPyithubawaWorld = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "pyithubawa", topic: "world" })
+    res.status(200).json(webscrapes)
+}
+
+const getAllPyithubawaGeneral = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "pyithubawa", topic: "general" })
+    res.status(200).json(webscrapes)
+}
+
+const getAllPyithubawaFitness = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "pyithubawa", topic: "fitness" })
     res.status(200).json(webscrapes)
 }
 
@@ -286,8 +318,8 @@ const updateWebscrape = async (req, res) => {
 }
 
 module.exports = {
-    saveWeclick4pdfFirstPost,
-    saveWeclick4pdfTopics,
+    saveFirstPost,
+    saveTopics,
     getWebscrapes,
     getWebscrape,
     getAllFirstPosts,
@@ -300,5 +332,11 @@ module.exports = {
     getAllWeclick4pdfTravel,
     getAllWeclick4pdfWorld,
     getAllWeclick4pdfGeneral,
-    getAllWeclick4pdfFitness
+    getAllWeclick4pdfFitness,
+    getAllPyithubawa,
+    getAllPyithubawaActivity,
+    getAllPyithubawaBeauty,
+    getAllPyithubawaWorld,
+    getAllPyithubawaGeneral,
+    getAllPyithubawaFitness
 };

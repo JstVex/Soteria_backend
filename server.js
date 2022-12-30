@@ -11,16 +11,13 @@ const donationRoutes = require('./routes/donations');
 const webscrapeRoutes = require('./routes/webscrapes')
 const channelscrapeRoutes = require('./routes/channelscrapes')
 
-const { webscrappingWeclick4pdfFirstPost, webscrappingWeclick4pdfTopics } = require("./components/webscrapes/weclick4pdf");
-const { saveWeclick4pdfFirstPost, saveWeclick4pdfTopics } = require("./controllers/webscrapesController")
+const { webscrappingFirstPost, webscrappingTopics } = require("./components/webscrapes/websites");
+const { saveFirstPost, saveTopics } = require("./controllers/webscrapesController")
 
 const weclick = require("./components/channelscrapes/weclick");
 const weclick4mm = require("./components/channelscrapes/weclick4mm");
 const raungni = require("./components/channelscrapes/raungni");
 const { saveWeClick, saveWeclick4mm, saveRaungni } = require("./controllers/channelscrapeController");
-
-// const webscrappingActivity = require('./components/webscrapes/weclick4pdf');
-// const channelscrapping = require('./components/channelscrapes/weclick');
 
 const app = express();
 
@@ -32,63 +29,109 @@ app.use(
     })
 )
 
-
+// urls for websites
 const weclick4pdfUrl = "https://weclick4pdf.com/";
 const weclick4pdfActivityUrl = "https://weclick4pdf.com/category/lifestyle/activity/";
 const weclick4pdfBeautyUrl = "https://weclick4pdf.com/category/beauty/";
 const weclick4pdfTravelUrl = "https://weclick4pdf.com/category/travel-tips/";
 const weclick4pdfWorldUrl = "https://weclick4pdf.com/category/world/";
-const weclick4pdfGeneralUrl = "https://weclick4pdf.com/category/example-1/"
-const weclick4pdfFitnessUrl = "https://weclick4pdf.com/category/sports/"
+const weclick4pdfGeneralUrl = "https://weclick4pdf.com/category/example-1/";
+const weclick4pdfFitnessUrl = "https://weclick4pdf.com/category/sports/";
 
+const pyithubawaUrl = "https://pyithubawa.com/";
+const pyithubawaActivityUrl = "https://pyithubawa.com/category/lifestyle/activity/";
+const pyithubawaBeautyUrl = "https://pyithubawa.com/category/beauty/";
+const pyithubawaWorldUrl = "https://pyithubawa.com/category/world/";
+const pyithubawaGeneralUrl = "https://pyithubawa.com/category/example-1/page/2/";
+const pyithubawaFitnessUrl = "https://pyithubawa.com/category/sports/page/2/";
+
+
+// urls for channels
 const weclickUrl = "https://www.youtube.com/@WECLICK2/videos";
 const weclick4mmUrl = "https://www.youtube.com/@WECLICK4MM/videos";
 const raungniUrl = "https://www.youtube.com/@RaungNi4MM/videos";
 
 
-// call websites scraping functions
-webscrappingWeclick4pdfFirstPost(weclick4pdfUrl)
+// call websites scraping functions for weclick4pdf website
+webscrappingFirstPost(weclick4pdfUrl, 'weclick4pdf')
     .then(dataObj => {
-        saveWeclick4pdfFirstPost(dataObj);
+        saveFirstPost(dataObj);
     })
     .catch(console.error)
 
-webscrappingWeclick4pdfTopics(weclick4pdfActivityUrl, 'activity')
+webscrappingTopics(weclick4pdfActivityUrl, 'weclick4pdf', 'activity')
     .then(dataObj => {
-        saveWeclick4pdfTopics(dataObj, 'activity');
+        saveTopics(dataObj, 'weclick4pdf', 'activity');
     })
     .catch(console.error)
 
-webscrappingWeclick4pdfTopics(weclick4pdfBeautyUrl, 'beauty')
+webscrappingTopics(weclick4pdfTravelUrl, 'weclick4pdf', 'travel')
     .then(dataObj => {
-        saveWeclick4pdfTopics(dataObj, 'beauty');
+        saveTopics(dataObj, 'weclick4pdf', 'travel');
     })
     .catch(console.error)
 
-webscrappingWeclick4pdfTopics(weclick4pdfTravelUrl, 'travel')
+webscrappingTopics(weclick4pdfWorldUrl, 'weclick4pdf', 'world')
     .then(dataObj => {
-        saveWeclick4pdfTopics(dataObj, 'travel');
+        saveTopics(dataObj, 'weclick4pdf', 'world');
     })
     .catch(console.error)
 
-webscrappingWeclick4pdfTopics(weclick4pdfWorldUrl, 'world')
+webscrappingTopics(weclick4pdfBeautyUrl, 'weclick4pdf', 'beauty')
     .then(dataObj => {
-        saveWeclick4pdfTopics(dataObj, 'world');
+        saveTopics(dataObj, 'weclick4pdf', 'beauty');
     })
     .catch(console.error)
 
-webscrappingWeclick4pdfTopics(weclick4pdfGeneralUrl, 'general')
+webscrappingTopics(weclick4pdfGeneralUrl, 'weclick4pdf', 'general')
     .then(dataObj => {
-        saveWeclick4pdfTopics(dataObj, 'general');
+        saveTopics(dataObj, 'weclick4pdf', 'general');
     })
     .catch(console.error)
 
-webscrappingWeclick4pdfTopics(weclick4pdfFitnessUrl, 'fitness')
+webscrappingTopics(weclick4pdfFitnessUrl, 'weclick4pdf', 'fitness')
     .then(dataObj => {
-        saveWeclick4pdfTopics(dataObj, 'fitness');
+        saveTopics(dataObj, 'weclick4pdf', 'fitness');
     })
     .catch(console.error)
 
+
+// call websites scraping functions for pyithubawa website
+webscrappingFirstPost(pyithubawaUrl, 'pyithubawa')
+    .then(dataObj => {
+        saveFirstPost(dataObj);
+    })
+    .catch(console.error)
+
+webscrappingTopics(pyithubawaActivityUrl, 'pyithubawa', 'activity')
+    .then(dataObj => {
+        saveTopics(dataObj, 'pyithubawa', 'activity');
+    })
+    .catch(console.error)
+
+webscrappingTopics(pyithubawaWorldUrl, 'pyithubawa', 'world')
+    .then(dataObj => {
+        saveTopics(dataObj, 'pyithubawa', 'world');
+    })
+    .catch(console.error)
+
+webscrappingTopics(pyithubawaBeautyUrl, 'pyithubawa', 'beauty')
+    .then(dataObj => {
+        saveTopics(dataObj, 'pyithubawa', 'beauty');
+    })
+    .catch(console.error)
+
+webscrappingTopics(pyithubawaGeneralUrl, 'pyithubawa', 'general')
+    .then(dataObj => {
+        saveTopics(dataObj, 'pyithubawa', 'general');
+    })
+    .catch(console.error)
+
+webscrappingTopics(pyithubawaFitnessUrl, 'pyithubawa', 'fitness')
+    .then(dataObj => {
+        saveTopics(dataObj, 'pyithubawa', 'fitness');
+    })
+    .catch(console.error)
 
 // call channels scrapping functions
 weclick(weclickUrl)

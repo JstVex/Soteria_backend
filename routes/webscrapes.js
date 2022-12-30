@@ -12,16 +12,23 @@ const {
     getAllWeclick4pdfTravel,
     getAllWeclick4pdfWorld,
     getAllWeclick4pdfGeneral,
-    getAllWeclick4pdfFitness
+    getAllWeclick4pdfFitness,
+    getAllPyithubawa,
+    getAllPyithubawaActivity,
+    getAllPyithubawaBeauty,
+    getAllPyithubawaWorld,
+    getAllPyithubawaGeneral,
+    getAllPyithubawaFitness
 } = require('../controllers/webscrapesController');
 
 const router = express();
 
-// get webs
+// get websites
 router.get('/', getWebscrapes);
 
 router.get('/firstposts', getAllFirstPosts);
 
+// get weclick4pdf 
 router.get('/weclick4pdf', getAllWeclick4pdf);
 
 router.get('/weclick4pdf/activity', getAllWeclick4pdfActivity);
@@ -35,6 +42,19 @@ router.get('/weclick4pdf/world', getAllWeclick4pdfWorld);
 router.get('/weclick4pdf/general', getAllWeclick4pdfGeneral);
 
 router.get('/weclick4pdf/fitness', getAllWeclick4pdfFitness);
+
+// get pyithubawa
+router.get('/pyithubawa', getAllPyithubawa);
+
+router.get('/pyithubawa/activity', getAllPyithubawaActivity);
+
+router.get('/pyithubawa/beauty', getAllPyithubawaBeauty);
+
+router.get('/pyithubawa/world', getAllPyithubawaWorld);
+
+router.get('/pyithubawa/general', getAllPyithubawaGeneral);
+
+router.get('/pyithubawa/fitness', getAllPyithubawaFitness);
 
 //get a single web
 router.get('/:id', getWebscrape);
