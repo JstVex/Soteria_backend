@@ -12,7 +12,7 @@ const channelscrapeSchema = new Schema({
     view: {
         type: Number
     },
-    time: {
+    date: {
         type: Number
     }
 })

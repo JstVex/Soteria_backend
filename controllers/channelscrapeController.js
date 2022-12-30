@@ -329,7 +329,7 @@ const getChannelscrape = async (req, res) => {
 
 // creat a new channelscrape
 const createChannelscrape = async (req, res) => {
-    const { titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates } = req.body;
+    const { titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates, urlsAmount, urls, pfp, subs, channel } = req.body;
 
     let emptyFields = [];
 
@@ -349,14 +349,14 @@ const createChannelscrape = async (req, res) => {
         return res.status(400).json({ error: 'please fill in the fields', emptyFields })
     }
     try {
-        const channelscrape = await ChannelscrapeArray.create({ titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates })
+        const channelscrape = await ChannelscrapeArray.create({ titlesAmount, titles, imgsAmount, imgs, viewsAmount, views, datesAmount, dates, urlsAmount, urls, pfp, subs, channel })
         res.status(200).json(channelscrape)
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
 }
 
-// delete a donation
+// delete a channelscrape
 const deleteChannelscrape = async (req, res) => {
     const { id } = req.params;
 
@@ -373,7 +373,7 @@ const deleteChannelscrape = async (req, res) => {
     res.status(200).json(channelscrape)
 }
 
-// update a donation
+// update a channelscrape
 const updateChannelscrape = async (req, res) => {
     const { id } = req.params;
 
