@@ -73,7 +73,7 @@ const saveWeclick4pdfTopics = (dataObj, topic) => {
                 return newVids.save().catch(err => console.log(err));
             }
 
-            const { titlesAmount, titles, imgsAmount, imgs, textsAmount, texts, datesAmount, dates, urlsAmount, urls, website, topic } = dataObj;
+            const { titlesAmount, titles, imgsAmount, imgs, textsAmount, texts, datesAmount, dates, urlsAmount, urls, website, firstPost, topic } = dataObj;
 
             const dbId = list[0]._id;
             const dbTitlesAmount = list[0].titlesAmount;
@@ -87,6 +87,7 @@ const saveWeclick4pdfTopics = (dataObj, topic) => {
             const dbUrlsAmount = list[0].urlsAmount;
             const dbUrls = list[0].urls;
             const dbWebsite = list[0].website;
+            const dbFirstPost = list[0].firstPost;
             const dbTopic = list[0].topic;
 
             let catchDifference = false;
@@ -135,6 +136,10 @@ const saveWeclick4pdfTopics = (dataObj, topic) => {
                 catchDifference = true;
             }
 
+            if (dbFirstPost !== firstPost) {
+                catchDifference = true;
+            }
+
             if (dbTopic !== topic) {
                 catchDifference = true;
             }
@@ -164,7 +169,7 @@ const getAllFirstPosts = async (req, res) => {
 }
 
 const getAllWeclick4pdf = async (req, res) => {
-    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf" })
+    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", firstPost: false })
     res.status(200).json(webscrapes)
 }
 
