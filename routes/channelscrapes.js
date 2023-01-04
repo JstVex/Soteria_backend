@@ -7,7 +7,8 @@ const {
     updateChannelscrape,
     getAllWeclick,
     getAllWeclick4mm,
-    getAllRaungni
+    getAllRaungni,
+    getAllPadaytharpin
 } = require('../controllers/channelscrapeController');
 
 
@@ -20,7 +21,9 @@ router.get('/weclick', getAllWeclick);
 
 router.get('/weclick4mm', getAllWeclick4mm);
 
-router.get('/raungni', getAllRaungni)
+router.get('/raungni', getAllRaungni);
+
+router.get('/padaytharpin', getAllPadaytharpin)
 
 //get a single web
 router.get('/:id', getChannelscrape);

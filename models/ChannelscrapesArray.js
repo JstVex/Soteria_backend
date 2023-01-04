@@ -46,7 +46,7 @@ const channelscrapeArraySchema = new Schema({
     channel: {
         type: String,
         required: true,
-        enum: ['weclick', 'weclick4mm', 'raungni']
+        enum: ['weclick', 'weclick4mm', 'raungni', 'padaytharpin']
     }
 
 })

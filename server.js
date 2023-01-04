@@ -14,10 +14,8 @@ const channelscrapeRoutes = require('./routes/channelscrapes')
 const { webscrappingFirstPost, webscrappingTopics } = require("./components/webscrapes/websites");
 const { saveFirstPost, saveTopics } = require("./controllers/webscrapesController")
 
-const weclick = require("./components/channelscrapes/weclick");
-const weclick4mm = require("./components/channelscrapes/weclick4mm");
-const raungni = require("./components/channelscrapes/raungni");
-const { saveWeClick, saveWeclick4mm, saveRaungni } = require("./controllers/channelscrapeController");
+const channelScraping = require("./components/channelscrapes/channel")
+const { saveChannel } = require("./controllers/channelscrapeController");
 
 const app = express();
 
@@ -50,6 +48,7 @@ const pyithubawaFitnessUrl = "https://pyithubawa.com/category/sports/page/2/";
 const weclickUrl = "https://www.youtube.com/@WECLICK2/videos";
 const weclick4mmUrl = "https://www.youtube.com/@WECLICK4MM/videos";
 const raungniUrl = "https://www.youtube.com/@RaungNi4MM/videos";
+const padaytharpinUrl = "https://www.youtube.com/@PaDayTharPin/videos";
 
 
 // call websites scraping functions for weclick4pdf website
@@ -134,21 +133,27 @@ webscrappingTopics(pyithubawaFitnessUrl, 'pyithubawa', 'fitness')
     .catch(console.error)
 
 // call channels scrapping functions
-weclick(weclickUrl)
+channelScraping(weclickUrl, 'weclick')
     .then(dataObj => {
-        saveWeClick(dataObj);
+        saveChannel(dataObj, 'weclick')
     })
     .catch(console.error)
 
-weclick4mm(weclick4mmUrl)
+channelScraping(weclick4mmUrl, 'weclick4mm')
     .then(dataObj => {
-        saveWeclick4mm(dataObj);
+        saveChannel(dataObj, 'weclick4mm')
     })
     .catch(console.error)
 
-raungni(raungniUrl)
+channelScraping(raungniUrl, 'raungni')
     .then(dataObj => {
-        saveRaungni(dataObj);
+        saveChannel(dataObj, 'raungni')
+    })
+    .catch(console.error)
+
+channelScraping(padaytharpinUrl, 'padaytharpin')
+    .then(dataObj => {
+        saveChannel(dataObj, 'padaytharpin')
     })
     .catch(console.error)
 
