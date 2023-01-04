@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 
-const channelscrapping = async pageUrl => {
+const channelscrapping = async (pageUrl, channel) => {
     const browser = await puppeteer.launch({
         headless: true
     });
@@ -102,7 +102,7 @@ const channelscrapping = async pageUrl => {
             urls: newUrls,
             pfp: newPfp,
             subs: newSubs,
-            channel: "weclick"
+            channel: channel
         };
 
     } catch (e) {
