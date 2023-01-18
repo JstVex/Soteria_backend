@@ -8,10 +8,12 @@ const donationSchema = new Schema({
         required: true
     },
     img: {
-        type: String,
-        required: true
+        type: String
     },
-    date: {
+    startDate: {
+        type: String
+    },
+    endDate: {
         type: String
     },
     text: {
@@ -23,6 +25,13 @@ const donationSchema = new Schema({
     },
     url: {
         type: String,
+        required: true
+    },
+    target: {
+        type: String
+    },
+    payment: {
+        type: [String],
         required: true
     },
     location: {

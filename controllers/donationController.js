@@ -96,15 +96,12 @@ const getDonation = async (req, res) => {
 
 // creat new donation
 const createDonation = async (req, res) => {
-    const { title, img, date, text, name, url, location } = req.body;
+    const { title, img, startDate, endDate, text, name, url, target, payment, location } = req.body;
 
     let emptyFields = [];
 
     if (!title) {
         emptyFields.push('title')
-    }
-    if (!img) {
-        emptyFields.push('img')
     }
     if (!text) {
         emptyFields.push('text')
@@ -116,10 +113,10 @@ const createDonation = async (req, res) => {
         emptyFields.push('location')
     }
     if (emptyFields.length > 0) {
-        return res.status(400).json({ error: 'please fill in the fields', emptyFields })
+        return res.status(400).json({ error: 'please fill in required fields', emptyFields })
     }
     try {
-        const donation = await Donation.create({ title, img, date, text, name, url, location })
+        const donation = await Donation.create({ title, img, startDate, endDate, text, name, url, target, payment, location })
         res.status(200).json(donation)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -131,13 +128,13 @@ const deleteDonation = async (req, res) => {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ error: 'no such donation' })
+        return res.status(404).json({ error: 'this donation post does not exist' })
     }
 
     const donation = await Donation.findOneAndDelete({ _id: id });
 
     if (!donation) {
-        return res.status(404).json({ error: 'no such donation' })
+        return res.status(404).json({ error: 'this donation post does not exist' })
     }
 
     res.status(200).json(donation)
@@ -148,7 +145,7 @@ const updateDonation = async (req, res) => {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ error: 'no such donation' })
+        return res.status(404).json({ error: 'this donation post does not exist' })
     }
 
     const donation = await Donation.findOneAndUpdate({ _id: id }, { ...req.body }, {
@@ -156,7 +153,7 @@ const updateDonation = async (req, res) => {
     });
 
     if (!donation) {
-        return res.status(404).json({ error: 'no such donation' })
+        return res.status(404).json({ error: 'this donation post does not exist' })
     }
 
     res.status(200).json(donation)
