@@ -7,6 +7,7 @@ const cors = require('cors');
 
 // const webRoutes = require('./routes/webs');
 const donationRoutes = require('./routes/donations');
+const campaignRoutes = require('./routes/campaigns');
 
 const webscrapeRoutes = require('./routes/webscrapes')
 const channelscrapeRoutes = require('./routes/channelscrapes')
@@ -23,7 +24,10 @@ app.use(
     cors({
         origin: "*",
         methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
-        credentials: true
+        credentials: true,
+        allowedHeaders: [
+            'Content-Type',
+        ]
     })
 )
 
@@ -172,6 +176,8 @@ app.use('/donations', donationRoutes)
 app.use('/channels', channelscrapeRoutes)
 
 app.use('/websites', webscrapeRoutes)
+
+app.use('/campaigns', campaignRoutes)
 
 
 app.all('*', (req, res) => {
