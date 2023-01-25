@@ -38,6 +38,9 @@ const donationSchema = new Schema({
         type: String,
         enum: ['kachin', 'kayah', 'kayin', 'chin', 'mon', 'rakhine', 'shan', 'yangon', 'mandalay', 'ayeyarwady', 'bago', 'magway', 'sagaing', 'tanintharyi'],
         required: true
+    },
+    newPost: {
+        type: Boolean
     }
 })
 
