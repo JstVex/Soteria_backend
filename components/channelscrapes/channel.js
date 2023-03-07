@@ -109,7 +109,7 @@ const channelscrapping = async (pageUrl, channel) => {
         console.log(e);
     }
 
-    console.log(dataObj)
+    // console.log(dataObj)
     browser.close();
     return dataObj;
 };

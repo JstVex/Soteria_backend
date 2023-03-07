@@ -7,7 +7,7 @@ const saveChannel = (dataObj, channel) => {
             return list;
         }).clone().then(list => {
             if (list == "") {
-                console.log(`New data created: ${JSON.stringify(dataObj)}`);
+                // console.log(`New data created: ${JSON.stringify(dataObj)}`);
                 const newVids = new ChannelscrapeArray(dataObj);
                 return newVids.save().catch(err => console.log(err));
             }
@@ -39,37 +39,31 @@ const saveChannel = (dataObj, channel) => {
                 });
             }
 
-            if (dbImgsAmount !== imgsAmount) {
-                catchDifference = true;
-            } else {
-                dbImgs.forEach((img, i) => {
-                    if (img !== imgs[i]) catchDifference = true;
-                });
-            }
+            // if (dbImgsAmount !== imgsAmount) {
+            //     catchDifference = true;
+            // } else {
+            //     dbImgs.forEach((img, i) => {
+            //         if (img !== imgs[i]) catchDifference = true;
+            //     });
+            // }
 
-            if (dbViewsAmount !== viewsAmount) {
-                catchDifference = true;
-            } else {
-                dbViews.forEach((view, i) => {
-                    if (view !== views[i]) catchDifference = true;
-                });
-            }
+            // if (dbViewsAmount !== viewsAmount) {
+            //     catchDifference = true;
+            // } else {
+            //     dbViews.forEach((view, i) => {
+            //         if (view !== views[i]) catchDifference = true;
+            //     });
+            // }
 
-            if (dbDatesAmount !== datesAmount) {
-                catchDifference = true;
-            } else {
-                dbDates.forEach((date, i) => {
-                    if (date !== dates[i]) catchDifference = true;
-                });
-            }
+            // if (dbDatesAmount !== datesAmount) {
+            //     catchDifference = true;
+            // } else {
+            //     dbDates.forEach((date, i) => {
+            //         if (date !== dates[i]) catchDifference = true;
+            //     });
+            // }
 
-            if (dbUrlsAmount !== urlsAmount) {
-                catchDifference = true;
-            } else {
-                dbUrls.forEach((url, i) => {
-                    if (url !== urls[i]) catchDifference = true;
-                });
-            }
+            if (dbDates[0] !== dates[0]) catchDifference = true;
 
             if (dbChannel !== channel) {
                 catchDifference = true;
@@ -84,11 +78,12 @@ const saveChannel = (dataObj, channel) => {
             }
 
             if (catchDifference) {
-                console.log('New data reported. Updating database...');
+                console.log(`New data reported. Updating database for ${channel}`);
                 return ChannelscrapeArray.findOneAndUpdate({ _id: dbId }, dataObj);
+            } else {
+                console.log(`No new data for ${channel}`)
             }
 
-            console.log('No new data')
         })
             .catch(err => console.log(err));
 
