@@ -24,35 +24,43 @@ const saveFirstPost = (dataObj, website) => {
 
             let catchDifference = false;
 
-            if (dbTitles !== titles) {
+            if (dbTitles[0] !== titles[0]) {
                 catchDifference = true;
+                console.log(`titles arent the same for ${website}`)
             }
 
-            if (dbImgs !== imgs) {
+            if (dbImgs[0] !== imgs[0]) {
                 catchDifference = true;
+                console.log(`imgs arent the same ${website}`)
             }
 
-            if (dbTexts !== texts) {
+            if (dbTexts[0] !== texts[0]) {
                 catchDifference = true;
+                console.log(`texts arent the same ${website}`)
             }
 
-            if (dbDates !== dates) {
+            if (dbDates[0] !== dates[0]) {
                 catchDifference = true;
+                console.log(`dates arent the same ${website}`)
             }
 
-            if (dbUrls !== urls) {
+            if (dbUrls[0] !== urls[0]) {
                 catchDifference = true;
+                console.log(`urls arent the same ${website}`)
             }
 
             if (dbWebsite !== website) {
                 catchDifference = true;
+                console.log(`wetsite isnt the same ${website}`)
             }
 
             if (catchDifference) {
-                console.log('New data reported. Updating database...');
+                console.log(`New data reported. Updating database for ${website}`);
                 return WebscrapeArray.findOneAndUpdate({ _id: dbId }, dataObj);
+            } else {
+                console.log(`No new data for first post of ${website}`)
             }
-            console.log('No new data')
+
         })
             .catch(err => console.log(err));
 
@@ -116,25 +124,25 @@ const saveTopics = (dataObj, website, topic) => {
                 });
             }
 
-            if (dbDatesAmount !== datesAmount) {
-                catchDifference = true;
-            } else {
-                dbDates.forEach((date, i) => {
-                    if (date !== dates[i]) catchDifference = true;
-                });
-            }
+            // if (dbDatesAmount !== datesAmount) {
+            //     catchDifference = true;
+            // } else {
+            //     dbDates.forEach((date, i) => {
+            //         if (date !== dates[i]) catchDifference = true;
+            //     });
+            // }
 
-            if (dbUrlsAmount !== urlsAmount) {
-                catchDifference = true;
-            } else {
-                dbUrls.forEach((url, i) => {
-                    if (url !== urls[i]) catchDifference = true;
-                });
-            }
+            // if (dbUrlsAmount !== urlsAmount) {
+            //     catchDifference = true;
+            // } else {
+            //     dbUrls.forEach((url, i) => {
+            //         if (url !== urls[i]) catchDifference = true;
+            //     });
+            // }
 
-            if (dbWebsite !== website) {
-                catchDifference = true;
-            }
+            // if (dbWebsite !== website) {
+            //     catchDifference = true;
+            // }
 
             if (dbFirstPost !== firstPost) {
                 catchDifference = true;
@@ -145,10 +153,12 @@ const saveTopics = (dataObj, website, topic) => {
             }
 
             if (catchDifference) {
-                console.log('New data reported. Updating database...');
+                console.log(`New data reported. Updating database for ${topic} in ${website}`);
                 return WebscrapeArray.findOneAndUpdate({ _id: dbId }, dataObj);
+            } else {
+                console.log(`No new data for ${topic} in ${website}`)
             }
-            console.log('No new data')
+
         })
             .catch(err => console.log(err));
 

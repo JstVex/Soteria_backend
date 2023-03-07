@@ -131,7 +131,7 @@ const webscrappingFirstPost = async (pageUrl, website) => {
         console.log(e);
     }
 
-    console.log(dataObj)
+    // console.log('DataObj is', dataObj)
     browser.close();
     return dataObj;
 };
@@ -231,7 +231,7 @@ const webscrappingTopics = async (pageUrl, website, topic) => {
         console.log(e);
     }
 
-    console.log(dataObj)
+    // console.log(dataObj)
     browser.close();
     return dataObj;
 };
