@@ -94,7 +94,7 @@ const getDonation = async (req, res) => {
     res.status(200).json(donation)
 }
 
-// creat new donation
+// create new donation
 const createDonation = async (req, res) => {
     const { title, img, startDate, endDate, text, name, url, target, payment, location, newPost } = req.body;
 
@@ -132,12 +132,27 @@ const deleteDonation = async (req, res) => {
     }
 
     const donation = await Donation.findOneAndDelete({ _id: id });
+    const getUpdatedDonations = await Donation.find({});
+
+    // const donation = await Donation.findOneAndDelete({ _id: id }, function (err, deletedDocument) {
+    //     if (err) throw err;
+    //     console.log('deleted document', deletedDocument);
+
+    //     const updatedDonation = await Donation.find({}, function (err, documents) {
+    //         if (err) throw err;
+
+    //         console.log('Updated collection:', documents);
+    //     })
+
+    //     return updatedDonation;
+    // });
+
 
     if (!donation) {
         return res.status(404).json({ error: 'this donation post does not exist' })
     }
 
-    res.status(200).json(donation)
+    res.status(200).json(getUpdatedDonations)
 }
 
 // update a donation

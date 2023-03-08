@@ -129,12 +129,13 @@ const deleteCampaign = async (req, res) => {
     }
 
     const campaign = await Campaign.findOneAndDelete({ _id: id });
+    const getUpdatedCampaigns = await Campaign.find({});
 
     if (!campaign) {
         return res.status(404).json({ error: 'this campaign post does not exist' })
     }
 
-    res.status(200).json(campaign)
+    res.status(200).json(getUpdatedCampaigns)
 }
 
 // update a campaign
