@@ -21,8 +21,9 @@ const {
     // getTanintharyi
 } = require('../controllers/campaignController');
 
-
 const router = express();
+
+const { upload } = require('../middleware/multer')
 
 // get webs
 router.get('/', getCampaigns);
@@ -46,7 +47,7 @@ router.get('/', getCampaigns);
 router.get('/:id', getCampaign);
 
 // creat a web
-router.post('/', createCampaign);
+router.post('/', upload.single('img'), createCampaign);
 
 // delete a web
 router.delete('/:id', deleteCampaign);
