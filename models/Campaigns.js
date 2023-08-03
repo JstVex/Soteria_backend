@@ -37,8 +37,7 @@ const campaignSchema = new Schema({
         type: String
     },
     payment: {
-        type: [String],
-        required: true
+        type: [String]
     },
     newPost: {
         type: Boolean
