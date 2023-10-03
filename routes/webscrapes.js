@@ -7,12 +7,12 @@ const {
     deleteWebscrape,
     updateWebscrape,
     getAllWeclick4pdf,
-    getAllWeclick4pdfActivity,
-    getAllWeclick4pdfBeauty,
-    getAllWeclick4pdfTravel,
-    getAllWeclick4pdfWorld,
-    getAllWeclick4pdfGeneral,
-    getAllWeclick4pdfFitness,
+    getAllWeclick4pdfInsurance,
+    getAllWeclick4pdfGas,
+    getAllWeclick4pdfCarAccidents,
+    getAllWeclick4pdfDoctoral,
+    getAllWeclick4pdfPersonalFinance,
+    getAllWeclick4pdfInvesting,
     getAllPyithubawa,
     getAllPyithubawaActivity,
     getAllPyithubawaBeauty,
@@ -31,17 +31,17 @@ router.get('/firstposts', getAllFirstPosts);
 // get weclick4pdf 
 router.get('/weclick4pdf', getAllWeclick4pdf);
 
-router.get('/weclick4pdf/activity', getAllWeclick4pdfActivity);
+router.get('/weclick4pdf/insurance', getAllWeclick4pdfInsurance);
 
-router.get('/weclick4pdf/beauty', getAllWeclick4pdfBeauty);
+router.get('/weclick4pdf/gas', getAllWeclick4pdfGas);
 
-router.get('/weclick4pdf/travel', getAllWeclick4pdfTravel);
+router.get('/weclick4pdf/car-accidents', getAllWeclick4pdfCarAccidents);
 
-router.get('/weclick4pdf/world', getAllWeclick4pdfWorld);
+router.get('/weclick4pdf/doctoral-program', getAllWeclick4pdfDoctoral);
 
-router.get('/weclick4pdf/general', getAllWeclick4pdfGeneral);
+router.get('/weclick4pdf/personal-finance', getAllWeclick4pdfPersonalFinance);
 
-router.get('/weclick4pdf/fitness', getAllWeclick4pdfFitness);
+router.get('/weclick4pdf/investing', getAllWeclick4pdfInvesting);
 
 // get pyithubawa
 router.get('/pyithubawa', getAllPyithubawa);

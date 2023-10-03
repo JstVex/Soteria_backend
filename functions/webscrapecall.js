@@ -3,12 +3,12 @@ const { saveFirstPost, saveTopics } = require("../controllers/webscrapesControll
 
 // urls for weclick4pdf website
 const weclick4pdfUrl = "https://weclick4pdf.com/";
-const weclick4pdfActivityUrl = "https://weclick4pdf.com/category/lifestyle/activity/";
-const weclick4pdfBeautyUrl = "https://weclick4pdf.com/category/beauty/";
-const weclick4pdfTravelUrl = "https://weclick4pdf.com/category/travel-tips/";
-const weclick4pdfWorldUrl = "https://weclick4pdf.com/category/world/";
-const weclick4pdfGeneralUrl = "https://weclick4pdf.com/category/example-1/";
-const weclick4pdfFitnessUrl = "https://weclick4pdf.com/category/sports/";
+const weclick4pdfInsuranceUrl = "https://weclick4pdf.com/category/insurance/";
+const weclick4pdfGasUrl = "https://weclick4pdf.com/category/gas/";
+const weclick4pdfDoctoralUrl = "https://weclick4pdf.com/category/doctoral-program/";
+const weclick4pdfCarAccidentsUrl = "https://weclick4pdf.com/category/care-accidents/";
+const weclick4pdfPersonalFinanceUrl = "https://weclick4pdf.com/category/personal-finance/";
+const weclick4pdfInvestingUrl = "https://weclick4pdf.com/category/investing/";
 
 //  urls for pyithubawa website
 const pyithubawaUrl = "https://pyithubawa.com/";
@@ -26,39 +26,39 @@ const webscrapeWeclick4pdf = () => {
         })
         .catch(console.error)
 
-    webscrappingTopics(weclick4pdfActivityUrl, 'weclick4pdf', 'activity')
+    webscrappingTopics(weclick4pdfInsuranceUrl, 'weclick4pdf', 'insurance')
         .then(dataObj => {
-            saveTopics(dataObj, 'weclick4pdf', 'activity');
+            saveTopics(dataObj, 'weclick4pdf', 'insurance');
         })
         .catch(console.error)
 
-    webscrappingTopics(weclick4pdfTravelUrl, 'weclick4pdf', 'travel')
+    webscrappingTopics(weclick4pdfGasUrl, 'weclick4pdf', 'gas')
         .then(dataObj => {
-            saveTopics(dataObj, 'weclick4pdf', 'travel');
+            saveTopics(dataObj, 'weclick4pdf', 'gas');
         })
         .catch(console.error)
 
-    webscrappingTopics(weclick4pdfWorldUrl, 'weclick4pdf', 'world')
+    webscrappingTopics(weclick4pdfCarAccidentsUrl, 'weclick4pdf', 'car accidents')
         .then(dataObj => {
-            saveTopics(dataObj, 'weclick4pdf', 'world');
+            saveTopics(dataObj, 'weclick4pdf', 'car accidents');
         })
         .catch(console.error)
 
-    webscrappingTopics(weclick4pdfBeautyUrl, 'weclick4pdf', 'beauty')
+    webscrappingTopics(weclick4pdfDoctoralUrl, 'weclick4pdf', 'doctoral program')
         .then(dataObj => {
-            saveTopics(dataObj, 'weclick4pdf', 'beauty');
+            saveTopics(dataObj, 'weclick4pdf', 'doctoral program');
         })
         .catch(console.error)
 
-    webscrappingTopics(weclick4pdfGeneralUrl, 'weclick4pdf', 'general')
+    webscrappingTopics(weclick4pdfPersonalFinanceUrl, 'weclick4pdf', 'personal finance')
         .then(dataObj => {
-            saveTopics(dataObj, 'weclick4pdf', 'general');
+            saveTopics(dataObj, 'weclick4pdf', 'personal finance');
         })
         .catch(console.error)
 
-    webscrappingTopics(weclick4pdfFitnessUrl, 'weclick4pdf', 'fitness')
+    webscrappingTopics(weclick4pdfInvestingUrl, 'weclick4pdf', 'investing')
         .then(dataObj => {
-            saveTopics(dataObj, 'weclick4pdf', 'fitness');
+            saveTopics(dataObj, 'weclick4pdf', 'investing');
         })
         .catch(console.error)
 }

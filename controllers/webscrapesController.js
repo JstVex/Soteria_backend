@@ -8,9 +8,11 @@ const saveFirstPost = (dataObj, website) => {
         }).clone().then(list => {
             if (list == "") {
                 console.log(`New data created: ${JSON.stringify(dataObj)}`);
-                const newVids = new WebscrapeArray(dataObj);
-                return newVids.save().catch(err => console.log(err));
+                const newPosts = new WebscrapeArray(dataObj);
+                return newPosts.save().catch(err => console.log(err));
             }
+
+            console.log('data is', dataObj)
 
             const { titles, imgs, texts, dates, urls, website } = dataObj;
 
@@ -77,8 +79,8 @@ const saveTopics = (dataObj, website, topic) => {
         }).clone().then(list => {
             if (list == "") {
                 console.log(`New data created: ${JSON.stringify(dataObj)}`);
-                const newVids = new WebscrapeArray(dataObj);
-                return newVids.save().catch(err => console.log(err));
+                const newPosts = new WebscrapeArray(dataObj);
+                return newPosts.save().catch(err => console.log(err));
             }
 
             const { titlesAmount, titles, imgsAmount, imgs, textsAmount, texts, datesAmount, dates, urlsAmount, urls, website, firstPost, topic } = dataObj;
@@ -184,33 +186,33 @@ const getAllWeclick4pdf = async (req, res) => {
     res.status(200).json(webscrapes)
 }
 
-const getAllWeclick4pdfActivity = async (req, res) => {
-    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "activity" })
+const getAllWeclick4pdfInsurance = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "insurance" })
     res.status(200).json(webscrapes)
 }
 
-const getAllWeclick4pdfBeauty = async (req, res) => {
-    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "beauty" })
+const getAllWeclick4pdfGas = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "gas" })
     res.status(200).json(webscrapes)
 }
 
-const getAllWeclick4pdfTravel = async (req, res) => {
-    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "travel" })
+const getAllWeclick4pdfCarAccidents = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "car accidents" })
     res.status(200).json(webscrapes)
 }
 
-const getAllWeclick4pdfWorld = async (req, res) => {
-    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "world" })
+const getAllWeclick4pdfDoctoral = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "doctoral program" })
     res.status(200).json(webscrapes)
 }
 
-const getAllWeclick4pdfGeneral = async (req, res) => {
-    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "general" })
+const getAllWeclick4pdfPersonalFinance = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "personal finance" })
     res.status(200).json(webscrapes)
 }
 
-const getAllWeclick4pdfFitness = async (req, res) => {
-    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "fitness" })
+const getAllWeclick4pdfInvesting = async (req, res) => {
+    const webscrapes = await WebscrapeArray.find({ website: "weclick4pdf", topic: "investing" })
     res.status(200).json(webscrapes)
 }
 
@@ -337,12 +339,12 @@ module.exports = {
     deleteWebscrape,
     updateWebscrape,
     getAllWeclick4pdf,
-    getAllWeclick4pdfActivity,
-    getAllWeclick4pdfBeauty,
-    getAllWeclick4pdfTravel,
-    getAllWeclick4pdfWorld,
-    getAllWeclick4pdfGeneral,
-    getAllWeclick4pdfFitness,
+    getAllWeclick4pdfDoctoral,
+    getAllWeclick4pdfGas,
+    getAllWeclick4pdfCarAccidents,
+    getAllWeclick4pdfPersonalFinance,
+    getAllWeclick4pdfInvesting,
+    getAllWeclick4pdfInsurance,
     getAllPyithubawa,
     getAllPyithubawaActivity,
     getAllPyithubawaBeauty,
