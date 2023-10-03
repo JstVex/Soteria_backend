@@ -64,7 +64,7 @@ const channelscrapping = async (pageUrl, channel) => {
 
         const newUrls = await page.evaluate(() => {
             const dates = document.querySelectorAll(
-                "#thumbnail"
+                "ytd-thumbnail > a#thumbnail"
             );
             let urlsList = [];
 

@@ -39,29 +39,33 @@ const saveChannel = (dataObj, channel) => {
                 });
             }
 
-            // if (dbImgsAmount !== imgsAmount) {
-            //     catchDifference = true;
-            // } else {
-            //     dbImgs.forEach((img, i) => {
-            //         if (img !== imgs[i]) catchDifference = true;
-            //     });
-            // }
+            if (dbImgsAmount !== imgsAmount) {
+                catchDifference = true;
+            } else {
+                dbImgs.forEach((img, i) => {
+                    if (img !== imgs[i]) catchDifference = true;
+                });
+            }
 
-            // if (dbViewsAmount !== viewsAmount) {
-            //     catchDifference = true;
-            // } else {
-            //     dbViews.forEach((view, i) => {
-            //         if (view !== views[i]) catchDifference = true;
-            //     });
-            // }
+            if (dbViewsAmount !== viewsAmount) {
+                catchDifference = true;
+            } else {
+                dbViews.forEach((view, i) => {
+                    if (view !== views[i]) catchDifference = true;
+                });
+            }
 
-            // if (dbDatesAmount !== datesAmount) {
-            //     catchDifference = true;
-            // } else {
-            //     dbDates.forEach((date, i) => {
-            //         if (date !== dates[i]) catchDifference = true;
-            //     });
-            // }
+            if (dbDatesAmount !== datesAmount) {
+                catchDifference = true;
+            } else {
+                dbDates.forEach((date, i) => {
+                    if (date !== dates[i]) catchDifference = true;
+                });
+            }
+
+            if (dbUrlsAmount !== urlsAmount) catchDifference = true;
+
+            if (dbUrls[0] !== urls[0]) catchDifference = true;
 
             if (dbDates[0] !== dates[0]) catchDifference = true;
 
